@@ -1,7 +1,6 @@
-# Viseo Javascript / Lwc room
+# Viseo Javascript / Lwc
 
-## `Javascript`
-### `Salesforce`
+### Salesforce
 
-open [the viseo webiste](http://http://viseotest.github.com/js-viseo) to view the JS lessons.
+open [`the viseo webiste`](http://http://viseotest.github.com/js-viseo) to view the JS lessons.
 
