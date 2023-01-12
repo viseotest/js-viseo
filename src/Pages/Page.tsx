@@ -1,30 +1,66 @@
 import React, { useEffect, useState } from 'react';
 import { mockNav, ContentProps } from '../data/mockContent';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
+import { Block } from '../components/Block/Block'
 
 export function Page () {
 
-    console.log('PAGE')
     const { docTitle } = useParams()
-    const [content,setContent] = useState<ContentProps[]>([]);
+    const [urlParam] = useSearchParams()
+    const [contents,setContent] = useState<ContentProps[] | null>(null);
+
+
+    function getArticle () {
+        const getDataWithUrlParam = mockNav.filter( item => item.url === docTitle )[0]
+        const getDataWithCodeParam = mockNav.filter( item => item.code === urlParam.get('view') )[0]
+        
+        if (getDataWithUrlParam) setContent( getDataWithUrlParam.content || null )
+        if (getDataWithCodeParam) setContent( getDataWithCodeParam.subTitle?.filter( item => item.url === docTitle )[0]?.content || null )
+    }
 
     useEffect( () => {
-        const currentContent = mockNav.filter( item => {
-            let { content, subTitle, url } = item
-            if(!subTitle && url === docTitle) {
-                return item.content
-            }
-            return null
-        });
-        console.log(docTitle, currentContent)
-    },[docTitle])
+        getArticle()
+    },[docTitle] )
 
+    if (contents) return ( 
+        <div style={{ marginTop: 110 }}>            
+            { contents.map( 
+                (content,key) => 
+                    <aside key={key} style={{ marginBottom: 20 }}>
+                        <Block {...content} />
+                    </aside>
+                )
+            }
+        </div> 
+    )
+    if (contents === undefined) return ( <>loading...</> )
+    return <NotFoundArticle />
+}
+
+
+
+
+
+function NotFoundArticle () {
     return (
         <div>
-            {
-                content?.map( c => c.paragraphe )
-            }
+            Article Not Found
+        </div>
+    )
+}
+
+const DisplayContent = ( contents : ContentProps[] ) => {
+    console.log(contents)
+    return (
+        <div>
+            {/* { context.map( 
+                (content,key) => 
+                    <div key={key}>
+                        {content.title}
+                    </div>
+                )
+            } */}
         </div>
     )
 }

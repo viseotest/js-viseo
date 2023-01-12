@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { mockNav, NavItemProps, DataProps } from '../../data/mockContent';
+import { mockNav, DataProps } from '../../data/mockContent';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { NavLink, useSearchParams } from 'react-router-dom';
 
 
-export function NavigationItem ( { widthConfig }: NavItemProps ) {
+export function NavigationItem () {
 
     const [menuItem, setMenuItem] = useState<DataProps[]>([]);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const [currentView,setCurrentView] = useState<String | null>(null);
 
     const fetchData = () => {
@@ -20,12 +20,12 @@ export function NavigationItem ( { widthConfig }: NavItemProps ) {
         setCurrentView(searchParams.get('view'));
     },[searchParams])
 
-    const handleShowItems = ({ code = null }:DataProps) => {
+    const handleShowItems = ( { code = null }:any ) => {
         if(code!=null) document.getElementById(code)?.classList.toggle('is-visible')
     }
 
     return (
-        <Card style={{ width: widthConfig }}>
+        <Card>
             <Card.Header>
                 <h2>Menu</h2>
             </Card.Header>
@@ -50,7 +50,7 @@ export function NavigationItem ( { widthConfig }: NavItemProps ) {
                                 <div id={`${item.code}`} className={ currentView === item.code ? '':'is-visible' }>
                                     { 
                                         item.subTitle.map( (subItem,key) =>  
-                                            <div id={``} key={key} style={{ padding: 8 }}>
+                                            <div key={key} style={{ padding: 8 }}>
                                                 <NavLink to={`/js/${subItem.url}?view=${item.code}`}>{`${subItem.title}`}</NavLink>
                                             </div>
                                         )
