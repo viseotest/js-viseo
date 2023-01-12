@@ -49,18 +49,3 @@ function NotFoundArticle () {
         </div>
     )
 }
-
-const DisplayContent = ( contents : ContentProps[] ) => {
-    console.log(contents)
-    return (
-        <div>
-            {/* { context.map( 
-                (content,key) => 
-                    <div key={key}>
-                        {content.title}
-                    </div>
-                )
-            } */}
-        </div>
-    )
-}

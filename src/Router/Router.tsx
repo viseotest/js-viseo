@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes , Route } from 'react-router-dom';
+import { Routes , Route, Navigate } from 'react-router-dom';
 import { Index } from '../Pages/Index'
 import { Page } from '../Pages/Page' 
 
@@ -10,7 +10,7 @@ export function RouterGroup () {
             <Route path='/js'>
                 <Route path=':docTitle' element={ <Page /> }></Route>
             </Route>
-            <Route path='*' element={ <div>{'Page Error'}</div> }></Route>
+            <Route path='*' element={ <Navigate to="/" /> }></Route>
         </Routes>
     )
 }

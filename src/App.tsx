@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, useParams } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Navigation } from './components/Navigation/Navigation';
 import { RouterGroup } from './Router/Router';
 
