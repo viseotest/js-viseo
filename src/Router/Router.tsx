@@ -7,7 +7,7 @@ export function RouterGroup () {
     return (
         <Routes>
             <Route index path='/' element={ <Index /> }></Route>
-            <Route path='/js'>
+            <Route path='/article'>
                 <Route path=':docTitle' element={ <Page /> }></Route>
             </Route>
             <Route path='*' element={ <Navigate to="/" /> }></Route>

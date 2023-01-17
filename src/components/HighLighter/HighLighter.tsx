@@ -1,6 +1,7 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { duotoneSea as backGroundStyle } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus as backGroundStyle } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
 
 
 export interface CodeBlockProps {
@@ -10,8 +11,9 @@ export interface CodeBlockProps {
 }
 
 export function CodeBlockSnippet ( { lang, codeSnippet, showLineNumber = false } : CodeBlockProps ) {
+    console.log(backGroundStyle)
     return (
-        <SyntaxHighlighter language={`${lang}`} style={backGroundStyle} className={'pre-style'} showLineNumbers={showLineNumber} wrapLines={true}>
+        <SyntaxHighlighter language={`${lang}`} style={backGroundStyle} className={'pre-style'}>
             {`${codeSnippet}`}
         </SyntaxHighlighter>
     )

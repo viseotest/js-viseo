@@ -14,10 +14,10 @@ export default function App() {
     <Router>
       <section style={{ display: 'flex', flexDirection: 'row' }}>
           <header style={{ padding: 32 }}>
-            <Navigation width={280} />
+            <Navigation width={350} />
           </header>
           <section style={{ padding: '32px 0px 32px 40px', width: '100%' }}>
-            <GlobalSearch />
+            {/* <GlobalSearch /> */}
             <RouterGroup />
           </section>
       </section>
