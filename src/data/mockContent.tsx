@@ -8,7 +8,7 @@ export interface DataProps {
 
 export const navItem = [
     { 
-        title: "Javascript",
+        title: "Language Script",
         url: "javascript",
     },
     { 

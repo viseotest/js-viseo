@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
 import axios from 'axios';
 import { CodeBlockSnippet } from '../components/HighLighter/HighLighter';
+import { childrenToReact } from 'react-markdown/lib/ast-to-react';
+import { title } from 'process';
 
 export function Page () {
 
@@ -24,7 +29,7 @@ export function Page () {
             isLoading(false)
         }
         getResource()
-    },[docTitle])
+    },[docTitle]) 
 
     if (loading) return (
         <LayoutArticle isClassic>
@@ -34,12 +39,32 @@ export function Page () {
     if (post) return (
             <LayoutArticle>
                 <ReactMarkdown
-                    children={post} 
+                    children={post}
                     components={{
-                        code({node, inline, className, children, ...props}) {
+                        h3: ({node,className, children, ...props}) => {
+                            const titleName:any = children[0]
+                            const dynamicAnchor = titleName.replaceAll(' ', '-').toLowerCase()
                             return (
-                                <CodeBlockSnippet lang={`${className?.split('-')[1]}`} codeSnippet={`${children}`} />
-                            )
+                                <h3 id={dynamicAnchor}>
+                                    <a href={`#${dynamicAnchor}`} className="anchor-url">#</a>
+                                    {children}
+                                </h3>
+                            )  
+                        },
+                        code: ({node, inline, className, children, ...props}) => {
+                            console.log(node)
+                            const language = className?.split('-')[1]
+                            if (!language) {
+                                return (
+                                    <span className='inline-block'>
+                                        {`${children}`}
+                                    </span>
+                                )
+                            } else {
+                                return (
+                                    <CodeBlockSnippet lang={`${language}`} codeSnippet={`${children}`} />
+                                )
+                            }
                         }
                     }}
                 />

@@ -1,10 +1,14 @@
-# **Javascript**
+# **Le Language Script**
 
 ## Le seul langage de script côté navigateur
 
 Si votre objectif est de rendre vos pages interactives alors vous n'avez pas trop le choix, le JavaScript est un passage obligé car c'est le seul langage de script compris par les navigateurs. Il existe certes des initiatives permettant de convertir d'autres langages de programmation en JavaScript mais ce n'est pas forcément une méthode pérenne ni simple pour créer des interactions sur une page web.
 
-```jsx
+```bash
+@javacript:
+```
+
+```html
 <script type="script">
 // code here
 </script>
