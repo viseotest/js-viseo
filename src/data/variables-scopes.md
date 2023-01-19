@@ -7,7 +7,7 @@ En javascript pour stocker des valeurs dans des variables, nous utilistions les 
 
 * const 
 * let 
-* var
+* var *(deprecated)*
 
 ces trois types d'insctructions ont leur propre scope, vous trouverez ci-dessus la façon dont ils sont construits.
 
@@ -15,6 +15,15 @@ ces trois types d'insctructions ont leur propre scope, vous trouverez ci-dessus 
 const constElement = 'MON_ELEMENT'
 let letElement
 var varElement
+```
+
+Vous avez la possibilite de chainer des instructions de meme type sur une seule ligne.
+
+```jsx
+const num1 = 0, num2 = 1, num3 = 2 // OK
+const num1,num2,num3 // Error
+
+let num1,num2,num3 // OK
 ```
 
 ### Instruction const
@@ -62,12 +71,8 @@ let number
 // output : undefined
 ```
 
-> Une **const** est un conteneur de type **immuable**
-
-dans l'exemple ci-dessous la variable **`number`** prent comme valeur **`42`**, qui par la suite change pour `99` OR cette operation n'est pas possible car le decorateur de cette variable est une `constante`.
-
 ```jsx
 let number = 42
 number = 99
-console.log(number) // Output: 42
+console.log(number) // Output: 99
 ``` 
