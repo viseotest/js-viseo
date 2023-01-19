@@ -7,7 +7,7 @@ import { RouterGroup } from './Router/Router';
 
 export default function App() {
   return (
-    <Router>
+    <Router basename='/js-viseo'>
       <section style={{ display: 'flex', flexDirection: 'row' }}>
           <header style={{ padding: 32 }}>
             <Navigation width={350} />
