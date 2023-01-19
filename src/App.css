@@ -1,5 +1,6 @@
 a { color: var(--bs-gray-900); text-decoration: none; }
-.list-group-item-alone { font-weight: 800; margin-bottom: 20px; }
+.list-group-item-alone { font-weight: 800; }
+.list-group-item-alone a, .list-group-item-alone {  display: block; margin-bottom: 20px; }
 .list-group-item { padding: 20px; }
 a:hover { color: #0099ff;}
 .is-visible { visibility: hidden; height: 0px; transition: height .3s ease-in-out; }

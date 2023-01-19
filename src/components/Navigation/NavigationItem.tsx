@@ -1,19 +1,16 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
-import { navItem, DataProps } from '../../data/mockContent';
+import items from '../../data/navigation.json';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { NavLink, useSearchParams } from 'react-router-dom';
 
+console.log(items)
 
 export function NavigationItem () {
 
-    const [menuItem, setMenuItem] = useState<DataProps[]>([]);
+    const [menuItem, setMenuItem] = useState<any[]>(items.items);
     const [fixedNav, setFixedNav] = useState<CSSProperties>({});
     const [searchParams] = useSearchParams();
-
-    function fetchData() {
-        setMenuItem(navItem)
-    }
 
     function setFixedNavScroll ( e : Event) {
         const window = e.currentTarget as Window;
@@ -24,7 +21,6 @@ export function NavigationItem () {
     }
 
     useEffect( () => {
-        fetchData()
         window.addEventListener( 'scroll', setFixedNavScroll );
     },[searchParams])
 
@@ -35,31 +31,38 @@ export function NavigationItem () {
                     ( item,key ) =>
                         <ListGroup.Item 
                             key={key}
-                            style={ item.subTitle ? { height: '100%' } : { height: 'auto' } }>
-                            { 
-                                item.url ? 
-                                    <NavLink to={`/article/${item.url}`}>
-                                        <h6>{item.title}</h6>
-                                    </NavLink>
-                                    : 
-                                    <h6 className="list-group-item-alone">
+                            style={ item.subTitle ? { height: '100%' } : { height: 'auto' } }
+                            >
+                                { 
+                                    item.subTitle ? 
+                                    <>
+                                        { 
+                                            item.url ? 
+                                            <h6 className="list-group-item-alone">
+                                                <NavLink to={`/article/${item.url}`}>
+                                                    {item.title}
+                                                </NavLink>
+                                            </h6>
+                                            :
+                                            <h6 className="list-group-item-alone">
+                                                {item.title}
+                                            </h6> 
+                                        }
+                                        { 
+                                            item.subTitle.map( (subItem:any) =>  
+                                                <div style={{ padding: 8, marginLeft: 10 }}>
+                                                    <NavLink to={`/article/${subItem.url}`}>{`${subItem.title}`}</NavLink>
+                                                </div>
+                                            )
+                                        }   
+                                    </>
+                                    :
+                                    <h6 style={{ fontWeight: 800 }}>
+                                        <NavLink to={`/article/${item.url}`}>
                                         {item.title}
-                                    </h6> 
-                            }
-                            { 
-                                item.subTitle ? 
-                                <div>
-                                    { 
-                                        item.subTitle.map( (subItem,key) =>  
-                                            <div key={key} style={{ padding: 8, marginLeft: 10 }}>
-                                                <NavLink to={`/article/${subItem.url}`}>{`${subItem.title}`}</NavLink>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                                :
-                                null
-                            }
+                                        </NavLink>
+                                    </h6>
+                                }
                         </ListGroup.Item>
                     )
                 }
