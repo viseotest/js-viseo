@@ -35,7 +35,7 @@ Cela signifie que la valeur affectée à ce type d'instruction ne peut changer e
 const number = 42;
 ```
 
-> Une **const** est un conteneur de type **immuable**
+> Une **const** est un conteneur de type **immuable** qui a sa propre initialisation
 
 ```jsx
 const number = 42
