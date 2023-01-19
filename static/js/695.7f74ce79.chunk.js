@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjs_viseo=self.webpackChunkjs_viseo||[]).push([[695],{7695:function(s,a,e){s.exports=e.p+"static/media/standardisation-javascript.a885e4091812a33e212a.md"}}]);
