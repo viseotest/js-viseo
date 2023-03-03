@@ -7,8 +7,19 @@ import { CodeBlockSnippet } from '../components/HighLighter/HighLighter';
 export function Page () {
 
     const { docTitle } = useParams()
-    const [loading,isLoading] = useState<boolean>(false);
-    const [post,setPost] = useState<any>(undefined); 
+    const [loading,isLoading] = useState<boolean>(false)
+    const [post,setPost] = useState<any>(undefined)
+
+    function UpdateAnchorLink (children:any) {
+        const anchor = children[0]
+        if(anchor) return (
+            <h3 id={children[0]}>
+                 <a href={`#${children[0].replaceAll(' ', '-').toLowerCase()}`} className="anchor-url">#</a>
+                 {children[0]}
+            </h3>
+        )
+        
+    }
 
     useEffect( () => {
         async function getResource (){
@@ -32,22 +43,16 @@ export function Page () {
         </LayoutArticle>
     )
     if (post) return (
+        <section style={{ display: 'flex' }}>
             <LayoutArticle>
                 <ReactMarkdown
                     children={post}
                     components={{
                         h3: ({node,className, children, ...props}) => {
-                            const titleName:any = children[0]
-                            const dynamicAnchor = titleName.replaceAll(' ', '-').toLowerCase()
-                            return (
-                                <h3 id={dynamicAnchor}>
-                                    <a href={`#${dynamicAnchor}`} className="anchor-url">#</a>
-                                    {children}
-                                </h3>
-                            )  
+                            const child = children
+                            return ( <UpdateAnchorLink key={child[0]} children={child} /> )
                         },
                         code: ({node, inline, className, children, ...props}) => {
-                            console.log(node)
                             const language = className?.split('-')[1]
                             if (!language) {
                                 return (
@@ -64,6 +69,10 @@ export function Page () {
                     }}
                 />
             </LayoutArticle>
+            {/* <section>
+                {anchors.map( link => <div>{link}</div>) }
+            </section> */}
+        </section>
         )
     return (
         <LayoutArticle isClassic>

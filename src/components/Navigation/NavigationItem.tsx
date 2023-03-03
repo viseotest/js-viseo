@@ -8,7 +8,7 @@ console.log(items)
 
 export function NavigationItem () {
 
-    const [menuItem, setMenuItem] = useState<any[]>(items.items);
+    const [menuItem] = useState<any[]>(items.items);
     const [fixedNav, setFixedNav] = useState<CSSProperties>({});
     const [searchParams] = useSearchParams();
 
@@ -50,7 +50,7 @@ export function NavigationItem () {
                                         }
                                         { 
                                             item.subTitle.map( (subItem:any) =>  
-                                                <div style={{ padding: 8, marginLeft: 10 }}>
+                                                <div key={subItem} style={{ padding: 8, marginLeft: 10 }}>
                                                     <NavLink to={`/article/${subItem.url}`}>{`${subItem.title}`}</NavLink>
                                                 </div>
                                             )
@@ -59,7 +59,7 @@ export function NavigationItem () {
                                     :
                                     <h6 style={{ fontWeight: 800 }}>
                                         <NavLink to={`/article/${item.url}`}>
-                                        {item.title}
+                                            {item.title}
                                         </NavLink>
                                     </h6>
                                 }
