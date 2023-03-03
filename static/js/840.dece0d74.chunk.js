@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkjs_viseo=self.webpackChunkjs_viseo||[]).push([[840],{1840:function(e,s,a){e.exports=a.p+"static/media/variables-scopes.9d0a9eae64d21818ec1b.md"}}]);
