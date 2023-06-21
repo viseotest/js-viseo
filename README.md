@@ -2,5 +2,5 @@
 
 ### Salesforce
 
-open [`the viseo webiste`](http://viseotest.github.io/js-viseo) to view the JS lessons.
+open [`the viseo webiste`](https://js-viseo.vercel.app/) to view the JS lessons.
 
