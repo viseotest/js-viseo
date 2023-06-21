@@ -3,7 +3,7 @@ import React from 'react'
 export function Index () {
     return (
         <div>
-            Index
+            <span>Sabrina Bencheikh & Schouten Axel</span>
         </div>
     )
 }
